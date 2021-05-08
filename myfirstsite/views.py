@@ -30,6 +30,7 @@ def analyze(request):
     checknewlinermv = request.POST.get('check3', 'off')
     checkspacermv = request.POST.get('check4', 'off')
     checkcharcount = request.POST.get('check5', 'off')
+    checknumrmv = request.POST.get('check6', 'off')
     # Check if check1 is on
     if checkselect == "on":
         #Code for removing punctuations from the string
@@ -73,12 +74,21 @@ def analyze(request):
         count=0
         analyzed=""
         for char in djtext:
-            if char !="\0":
-                count=count+1
-                analyzed=analyzed+char
+            count=count+1
+            analyzed=analyzed+char
         params = {'purpose': 'Character Count', 'analyzed_text': analyzed,'count':count}
         djtext = analyzed
-    if (checkselect != "on" and checkfullcaps != "on" and checknewlinermv != "on" and checkspacermv != "on" and checkcharcount!="on"):
+
+    if checknumrmv == "on":
+        analyzed=""
+        for char in djtext:
+            if not char.isdigit():
+                analyzed=analyzed+char
+        #analyzed=''.join([i for i in djtext if not i.isdigit()])
+        params = {'purpose': 'Number Remover', 'analyzed_text': analyzed}
+        djtext = analyzed
+
+    if (checkselect != "on" and checkfullcaps != "on" and checknewlinermv != "on" and checkspacermv != "on" and checkcharcount!="on" and checknumrmv!="on"):
         return HttpResponse("Error : Please Select any of The Operations !! Try Again !!")
         # return render(request, 'analyze.html', params)
 

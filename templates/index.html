@@ -58,7 +58,7 @@
    <div class="container">
     <form action="/analyze" method="post">{% csrf_token %}
         <div class="mb-3 ">
-            <label for="exampleFormControlTextarea1" class="form-label">Enter Your text here and let TextUtils do the magic!</label>
+            <label for="exampleFormControlTextarea1" class="form-label"><b>Enter Your text here and let TextUtils do the magic!</b></label>
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="tarea1"></textarea>
 
         </div>
@@ -81,6 +81,10 @@
        <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" name="check5">
           <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Character Count</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="check6" name="check6">
+          <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Number Remover</label>
         </div>
        <button type="submit" class="btn btn-dark mt-3">Analyze Text</button>
         </form>
